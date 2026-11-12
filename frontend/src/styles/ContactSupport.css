@@ -1,0 +1,348 @@
+@import "./PublicPages.css";
+
+.support-workspace {
+  --home-mint: #67dfbd;
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 248px minmax(0, 1fr);
+  background: #080e1a;
+  color: #e7edf7;
+}
+
+.support-sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  padding: 24px 16px 16px;
+  border-right: 1px solid #202d3f;
+  background: #0a111f;
+}
+
+.support-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 8px 27px;
+  border: 0;
+  background: transparent;
+  color: #f3f6fb;
+  text-align: left;
+}
+
+.support-brand-mark {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #8bf0d4, #42cba5);
+  color: #06201a;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.support-brand > span:last-child {
+  display: grid;
+  font-size: 15px;
+  font-weight: 780;
+  line-height: 1.1;
+}
+
+.support-brand > span:last-child > span {
+  color: #67dfbd;
+}
+
+.support-brand small {
+  margin-top: 5px;
+  color: #8290a4;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.support-sidebar-section {
+  display: grid;
+  gap: 6px;
+}
+
+.support-sidebar-label {
+  padding: 0 10px 8px;
+  color: #74849a;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 1.1px;
+}
+
+.support-sidebar-link {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 11px;
+  padding: 0 11px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #9aa8bb;
+  font-size: 12px;
+  text-align: left;
+}
+
+.support-sidebar-link svg {
+  width: 15px;
+  color: #8595a9;
+}
+
+.support-sidebar-link:hover,
+.support-sidebar-link.is-active {
+  border-color: #244238;
+  background: #12251f;
+  color: #86e5c9;
+}
+
+.support-sidebar-link.is-active svg {
+  color: #86e5c9;
+}
+
+.support-sidebar-bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 14px 5px 2px;
+  border-top: 1px solid #202d3f;
+}
+
+.support-user-avatar {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: #17332f;
+  color: #86e5c9;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.support-sidebar-bottom > span:nth-child(2) {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.support-sidebar-bottom strong {
+  color: #dce5ef;
+  font-size: 11px;
+}
+
+.support-sidebar-bottom small {
+  color: #8291a5;
+  font-size: 9px;
+}
+
+.support-main {
+  min-width: 0;
+}
+
+.support-topbar {
+  display: flex;
+  min-height: 65px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 clamp(24px, 5vw, 64px);
+  border-bottom: 1px solid #202d3f;
+  background: #0a111f;
+  color: #9aa8bb;
+  font-size: 11px;
+}
+
+.support-topbar > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.support-topbar > span:first-child svg {
+  color: #67dfbd;
+  font-size: 9px;
+}
+
+.support-topbar-role {
+  color: #7f8ea2;
+}
+
+.support-mobile-back {
+  display: none;
+}
+
+.support-workspace .company-contact-section {
+  min-height: calc(100vh - 65px);
+  padding: clamp(32px, 5vh, 58px) 0;
+}
+
+.support-workspace .contact-page-layout {
+  gap: 24px;
+}
+
+.support-workspace .contact-page-heading h1 {
+  font-size: clamp(28px, 3vw, 38px);
+}
+
+.support-workspace .contact-page-heading .contact-email-link {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.support-workspace .contact-page-heading p {
+  font-size: 12px;
+}
+
+.support-workspace .contact-content-grid {
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+  gap: 20px;
+}
+
+.support-workspace .contact-page-details .contact-hero-card {
+  padding: 22px;
+}
+
+.support-workspace .contact-page-details .contact-direct-card {
+  padding: 13px;
+}
+
+.support-workspace .contact-form {
+  padding: clamp(20px, 3vw, 30px);
+}
+
+.support-workspace .contact-form-heading h2 {
+  font-size: 19px;
+}
+
+.support-workspace .contact-form-fields label {
+  font-size: 11px;
+}
+
+.support-workspace .contact-form-fields input,
+.support-workspace .contact-form-fields select,
+.support-workspace .contact-form-fields textarea {
+  min-height: 44px;
+  font-size: 12px;
+}
+
+.support-workspace .contact-form-fields textarea {
+  min-height: 140px;
+}
+
+@media (max-width: 1000px) {
+  .support-workspace {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+
+  .support-workspace .contact-content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .support-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .support-sidebar {
+    position: static;
+    height: auto;
+    padding: 12px 18px;
+    border-right: 0;
+    border-bottom: 1px solid #202d3f;
+  }
+
+  .support-brand {
+    padding: 0;
+  }
+
+  .support-brand-mark {
+    width: 35px;
+    height: 35px;
+    flex-basis: 35px;
+    border-radius: 10px;
+    font-size: 17px;
+  }
+
+  .support-sidebar-section,
+  .support-sidebar-bottom,
+  .support-topbar-role {
+    display: none;
+  }
+
+  .support-topbar {
+    min-height: 48px;
+    padding: 0 18px;
+    font-size: 10px;
+  }
+
+  .support-mobile-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #9aa8bb;
+    font-size: 10px;
+  }
+
+  .support-workspace .company-contact-section {
+    display: block;
+    padding: 14px 0;
+  }
+
+  .support-workspace .contact-page-layout {
+    gap: 14px;
+  }
+
+  .support-workspace .company-section-inner {
+    width: min(100% - 32px, 560px);
+  }
+
+  .support-workspace .contact-page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .support-workspace .contact-page-heading .contact-email-link {
+    overflow-wrap: anywhere;
+  }
+
+  .support-workspace .contact-content-grid {
+    gap: 12px;
+  }
+
+  .support-workspace .contact-page-details {
+    display: none;
+  }
+
+  .support-workspace .contact-form {
+    padding: 14px;
+  }
+
+  .support-workspace .contact-form-heading {
+    margin-bottom: 12px;
+  }
+
+  .support-workspace .contact-form-fields {
+    gap: 8px;
+  }
+
+  .support-workspace .contact-form-fields textarea {
+    min-height: 88px;
+  }
+
+  .support-workspace .contact-submit {
+    margin-top: 9px;
+  }
+}

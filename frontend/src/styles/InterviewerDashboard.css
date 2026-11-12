@@ -1,0 +1,1292 @@
+#root:has(.interviewer-dashboard) {
+  display: flow-root;
+}
+
+.interviewer-dashboard {
+  --interviewer-ink: #e7edf7;
+  --interviewer-muted: #9aa8bb;
+  --interviewer-mint: #67dfbd;
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 228px minmax(0, 1fr);
+  background: #080e1a;
+  color: var(--interviewer-ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.interviewer-sidebar {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  padding: 21px 15px 16px;
+  border-right: 1px solid #253348;
+  background:
+    radial-gradient(ellipse at 10% 100%, rgb(91 70 180 / 15%), transparent 20rem),
+    #0d1624;
+}
+
+.interviewer-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 7px;
+  border: 0;
+  background: transparent;
+  color: #e7edf7;
+  text-align: left;
+}
+
+.interviewer-brand > span:last-child {
+  display: grid;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.35px;
+  line-height: 1.05;
+}
+
+.interviewer-brand > span:last-child > span {
+  color: var(--interviewer-mint);
+}
+
+.interviewer-brand small {
+  margin-top: 5px;
+  color: #8290a4;
+  font-size: 7px;
+  font-weight: 650;
+  letter-spacing: 0.75px;
+}
+
+.interviewer-brand-mark {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgb(103 223 189 / 20%);
+  border-radius: 10px;
+  background: #173a32;
+  color: var(--interviewer-mint);
+  font-size: 14px;
+}
+
+.interviewer-identity {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  margin: 30px 0 22px;
+  text-align: center;
+}
+
+.interviewer-avatar,
+.interviewer-profile-button > span {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  place-items: center;
+  border: 3px solid #304f50;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #c8f3e7, #77cdb3);
+  color: #15574b;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.interviewer-avatar img,
+.interviewer-profile-button > span img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.interviewer-profile-button > span img {
+  border-radius: 50%;
+}
+
+.interviewer-identity strong {
+  max-width: 100%;
+  overflow: hidden;
+  color: #e7edf7;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.interviewer-identity > span:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #9aa8bb;
+  font-size: 8px;
+}
+
+.interviewer-identity i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--interviewer-mint);
+  box-shadow: 0 0 8px rgb(103 223 189 / 70%);
+}
+
+.interviewer-nav {
+  display: grid;
+  gap: 5px;
+}
+
+.interviewer-nav button,
+.interviewer-logout {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 11px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #a7b3c5;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.interviewer-nav button > svg,
+.interviewer-logout > svg {
+  width: 14px;
+  flex: 0 0 auto;
+  color: #8c9bb0;
+  font-size: 12px;
+}
+
+.interviewer-nav button:hover,
+.interviewer-logout:hover {
+  background: #152436;
+  color: #e7edf7;
+}
+
+.interviewer-nav button.is-active {
+  border-color: #23594f;
+  background: linear-gradient(100deg, #1a5148, #173b3d);
+  color: #8bf0d4;
+}
+
+.interviewer-nav button.is-active > svg {
+  color: #8bf0d4;
+}
+
+.interviewer-nav-count {
+  display: grid;
+  min-width: 18px;
+  height: 18px;
+  place-items: center;
+  margin-left: auto;
+  border-radius: 6px;
+  background: #1b403b;
+  color: #8bf0d4;
+  font-size: 8px;
+  font-weight: 750;
+}
+
+.interviewer-sidebar-note {
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+  padding: 15px 13px;
+  border: 1px solid #2a5349;
+  border-radius: 11px;
+  background: linear-gradient(145deg, #153a37, #142634);
+}
+
+.interviewer-sidebar-note > span {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 9px;
+  background: #1b403b;
+  color: var(--interviewer-mint);
+}
+
+.interviewer-sidebar-note strong {
+  color: #e3f5ef;
+  font-size: 9px;
+}
+
+.interviewer-sidebar-note p {
+  margin: 0;
+  color: #a7b9c3;
+  font-size: 8px;
+  line-height: 1.55;
+}
+
+.interviewer-logout {
+  margin-top: 13px;
+}
+
+.interviewer-main {
+  min-width: 0;
+}
+
+.interviewer-topbar {
+  position: sticky;
+  z-index: 15;
+  top: 0;
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 clamp(20px, 3vw, 42px);
+  border-bottom: 1px solid #253348;
+  background: rgb(11 18 32 / 94%);
+  backdrop-filter: blur(15px);
+}
+
+.interviewer-search {
+  display: flex;
+  width: min(440px, 55%);
+  min-height: 36px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  border: 1px solid #28394e;
+  border-radius: 9px;
+  background: #111d2d;
+  color: #8290a4;
+}
+
+.interviewer-search > svg {
+  flex: 0 0 auto;
+  font-size: 11px;
+}
+
+.interviewer-search input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #e7edf7;
+  font-size: 10px;
+}
+
+.interviewer-search input::placeholder {
+  color: #8492a7;
+}
+
+.interviewer-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.interviewer-notification-button {
+  position: relative;
+  display: grid;
+  width: 33px;
+  height: 33px;
+  place-items: center;
+  border: 1px solid #28394e;
+  border-radius: 9px;
+  background: #111d2d;
+  color: #a9b5c5;
+  font-size: 12px;
+}
+
+.interviewer-notification-button > span {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  display: grid;
+  min-width: 15px;
+  height: 15px;
+  place-items: center;
+  padding: 0 3px;
+  border: 2px solid #0b1220;
+  border-radius: 99px;
+  background: #e66c7d;
+  color: white;
+  font-size: 7px;
+  font-weight: 750;
+}
+
+.interviewer-profile-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  color: #dce5ef;
+  font-size: 9px;
+}
+
+.interviewer-profile-button > span {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background: linear-gradient(145deg, #2caa91, #1c776c);
+  color: #effff9;
+  font-size: 11px;
+}
+
+.interviewer-header-logout {
+  display: inline-flex;
+  min-height: 33px;
+  align-items: center;
+  gap: 7px;
+  padding: 0 10px;
+  border: 1px solid #51343c;
+  border-radius: 8px;
+  background: #302129;
+  color: #f0a2ad;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.interviewer-header-logout:hover {
+  border-color: #9a5260;
+  background: #3a2631;
+}
+
+.interviewer-content {
+  width: min(1420px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 25px 0 38px;
+  scroll-margin-top: 78px;
+}
+
+.interviewer-welcome {
+  position: relative;
+  display: flex;
+  min-height: 160px;
+  align-items: center;
+  overflow: hidden;
+  padding: 25px clamp(22px, 3.2vw, 40px);
+  border: 1px solid rgb(103 223 189 / 17%);
+  border-radius: 15px;
+  background:
+    radial-gradient(ellipse at 80% 40%, rgb(103 223 189 / 18%), transparent 23rem),
+    linear-gradient(108deg, #145d53, #123c46 63%, #182b3d);
+}
+
+.interviewer-welcome-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.interviewer-eyebrow {
+  display: inline-block;
+  color: #8be4c8;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.15px;
+  text-transform: uppercase;
+}
+
+.interviewer-welcome h1 {
+  margin: 9px 0 0;
+  color: #f0f8f6;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 740;
+  letter-spacing: -1.15px;
+}
+
+.interviewer-welcome p {
+  max-width: 450px;
+  margin: 8px 0 0;
+  color: rgb(232 247 243 / 82%);
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.interviewer-welcome-copy > button {
+  display: inline-flex;
+  min-height: 31px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 0 11px;
+  border: 1px solid rgb(172 241 220 / 35%);
+  border-radius: 7px;
+  background: rgb(7 42 39 / 22%);
+  color: #dffff5;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.interviewer-welcome-copy > button:hover {
+  background: rgb(7 42 39 / 42%);
+}
+
+.interviewer-welcome-art {
+  position: absolute;
+  top: 0;
+  right: 3%;
+  width: 285px;
+  height: 100%;
+}
+
+.interviewer-art-ring {
+  position: absolute;
+  top: -79px;
+  right: 5px;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgb(191 245 228 / 20%);
+  border-radius: 50%;
+}
+
+.interviewer-art-calendar {
+  position: absolute;
+  top: 50%;
+  right: 97px;
+  display: grid;
+  width: 68px;
+  height: 68px;
+  place-items: center;
+  transform: translateY(-50%) rotate(-7deg);
+  border: 1px solid rgb(221 255 245 / 35%);
+  border-radius: 19px;
+  background: linear-gradient(145deg, #a5f2db, #53bfa4);
+  box-shadow: 0 18px 38px rgb(4 30 33 / 25%);
+  color: #104d43;
+  font-size: 28px;
+}
+
+.interviewer-art-check {
+  position: absolute;
+  top: 33%;
+  right: 60px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  background: #173f3b;
+  color: #8bf0d4;
+  font-size: 15px;
+}
+
+.interviewer-art-quote {
+  position: absolute;
+  right: 4px;
+  bottom: 20px;
+  color: rgb(227 248 241 / 77%);
+  font-size: 9px;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.interviewer-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 10px 13px;
+  border: 1px solid #51343c;
+  border-radius: 9px;
+  background: #302129;
+  color: #f0a2ad;
+  font-size: 9px;
+}
+
+.interviewer-error button {
+  color: #ffd1d8;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.interviewer-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 13px;
+}
+
+.interviewer-stat-card {
+  display: flex;
+  min-width: 0;
+  min-height: 73px;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 14px;
+  border: 1px solid #26364a;
+  border-radius: 11px;
+  background: #111d2d;
+}
+
+.interviewer-stat-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 10px;
+  background: #173a32;
+  color: #8bf0d4;
+  font-size: 15px;
+}
+
+.stat-upcoming .interviewer-stat-icon {
+  background: #172f40;
+  color: #84c6ee;
+}
+
+.stat-completed .interviewer-stat-icon {
+  background: #1a3731;
+  color: #87e2bc;
+}
+
+.interviewer-stat-card > span:nth-child(2) {
+  display: grid;
+  gap: 4px;
+}
+
+.interviewer-stat-card small {
+  color: #9aa8bb;
+  font-size: 8px;
+}
+
+.interviewer-stat-card strong {
+  color: #f0f5fb;
+  font-size: 19px;
+  line-height: 1;
+}
+
+.interviewer-stat-note {
+  margin-left: auto;
+  color: #75859a;
+  font-size: 8px;
+}
+
+.interviewer-dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(270px, 0.85fr);
+  align-items: start;
+  gap: 13px;
+  margin-top: 13px;
+}
+
+.interviewer-panel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #26364a;
+  border-radius: 12px;
+  background: #111d2d;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 10%);
+  scroll-margin-top: 78px;
+}
+
+.interviewer-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.interviewer-panel-heading > div {
+  min-width: 0;
+}
+
+.interviewer-panel-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 5px 0 0;
+  color: #e7edf7;
+  font-size: 13px;
+  font-weight: 720;
+  letter-spacing: -0.2px;
+}
+
+.interviewer-panel-heading h2 > svg {
+  color: #8bf0d4;
+  font-size: 11px;
+}
+
+.interviewer-panel-heading > button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: #8bf0d4;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.interviewer-filter-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid #26364a;
+}
+
+.interviewer-filter-tabs button {
+  min-height: 30px;
+  padding: 0 10px;
+  border-bottom: 2px solid transparent;
+  color: #9aa8bb;
+  font-size: 8px;
+  font-weight: 650;
+}
+
+.interviewer-filter-tabs button.is-active {
+  border-bottom-color: #67dfbd;
+  color: #8bf0d4;
+}
+
+.interviewer-interview-list {
+  display: grid;
+}
+
+.interviewer-interview-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 1px;
+  border-bottom: 1px solid #253348;
+}
+
+.interviewer-interview-row:last-child {
+  border-bottom: 0;
+}
+
+.interviewer-interview-row.is-selected {
+  background: linear-gradient(90deg, rgb(103 223 189 / 5%), transparent);
+}
+
+.interviewer-interview-select {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.interviewer-date-tile {
+  display: grid;
+  width: 43px;
+  height: 48px;
+  flex: 0 0 auto;
+  align-content: center;
+  justify-items: center;
+  gap: 1px;
+  border: 1px solid #2b514c;
+  border-radius: 9px;
+  background: #122a2c;
+  color: #8bf0d4;
+}
+
+.interviewer-date-tile small {
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.interviewer-date-tile strong {
+  color: #eff8f5;
+  font-size: 17px;
+  line-height: 1.05;
+}
+
+.interviewer-interview-info {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 4px;
+}
+
+.interviewer-interview-info > strong {
+  overflow: hidden;
+  color: #e7edf7;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.interviewer-interview-info > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  color: #9aa8bb;
+  font-size: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.interviewer-interview-info > span svg {
+  flex: 0 0 auto;
+  color: #82cdb8;
+  font-size: 8px;
+}
+
+.interviewer-status {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 7px;
+  border: 1px solid #2a5349;
+  border-radius: 99px;
+  background: #173a32;
+  color: #8bf0d4;
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.interviewer-status > i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #67dfbd;
+}
+
+.interviewer-status.status-completed {
+  border-color: #2a4b67;
+  background: #182b3b;
+  color: #8abcf0;
+}
+
+.interviewer-status.status-completed > i {
+  background: #80b7ef;
+}
+
+.interviewer-status.status-cancelled {
+  border-color: #51343c;
+  background: #302129;
+  color: #f0a2ad;
+}
+
+.interviewer-status.status-cancelled > i {
+  background: #e98597;
+}
+
+.interviewer-join-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 8px;
+  border: 1px solid #2a5349;
+  border-radius: 7px;
+  background: #173a32;
+  color: #8bf0d4;
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.interviewer-join-link svg {
+  font-size: 7px;
+}
+
+.interviewer-side-column {
+  display: grid;
+  gap: 13px;
+}
+
+.interviewer-action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.interviewer-action-grid button {
+  display: grid;
+  min-height: 76px;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
+  border: 1px solid #29394c;
+  border-radius: 9px;
+  background: #142337;
+  color: #b7c5d5;
+  font-size: 8px;
+  font-weight: 650;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.interviewer-action-grid button:hover {
+  border-color: #38695d;
+  background: #17312f;
+  color: #8bf0d4;
+}
+
+.interviewer-action-grid button > svg {
+  color: #8bf0d4;
+  font-size: 17px;
+}
+
+.interviewer-activity-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.interviewer-activity-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 9px 0;
+  border-top: 1px solid #253348;
+}
+
+.interviewer-activity-list li > span {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #173a32;
+  color: #8bf0d4;
+  font-size: 9px;
+}
+
+.interviewer-activity-list li > div {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.interviewer-activity-list strong {
+  color: #cbd5e1;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.interviewer-activity-list time {
+  flex: 0 0 auto;
+  color: #8290a4;
+  font-size: 7px;
+}
+
+.interviewer-panel-message {
+  margin: 0;
+  padding: 8px 0 3px;
+  color: #9aa8bb;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.interviewer-empty {
+  display: grid;
+  min-height: 158px;
+  align-content: center;
+  justify-items: center;
+  padding: 19px;
+  text-align: center;
+}
+
+.interviewer-empty > span {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 11px;
+  background: #173a32;
+  color: #8bf0d4;
+}
+
+.interviewer-empty strong {
+  margin-top: 9px;
+  color: #e7edf7;
+  font-size: 10px;
+}
+
+.interviewer-empty p {
+  max-width: 300px;
+  margin: 5px 0 0;
+  color: #9aa8bb;
+  font-size: 8px;
+  line-height: 1.55;
+}
+
+.interviewer-empty button {
+  margin-top: 11px;
+  color: #8bf0d4;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.interviewer-candidate-panel {
+  margin-top: 13px;
+}
+
+.interviewer-candidate-details {
+  display: grid;
+  grid-template-columns: auto minmax(150px, 0.9fr) minmax(180px, 1.2fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border: 1px solid #25364b;
+  border-radius: 10px;
+  background: #0e1928;
+}
+
+.interviewer-candidate-avatar {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border: 2px solid #2b514c;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #c8f3e7, #77cdb3);
+  color: #15574b;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.interviewer-candidate-main {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+}
+
+.interviewer-candidate-main > strong {
+  overflow: hidden;
+  color: #e7edf7;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.interviewer-candidate-main > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #9aa8bb;
+  font-size: 8px;
+  overflow-wrap: anywhere;
+}
+
+.interviewer-candidate-main > span svg {
+  flex: 0 0 auto;
+  color: #82cdb8;
+  font-size: 8px;
+}
+
+.interviewer-candidate-letter {
+  min-width: 0;
+  padding-left: 15px;
+  border-left: 1px solid #29394c;
+}
+
+.interviewer-candidate-letter p {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 6px 0 0;
+  color: #b2bfce;
+  font-size: 8px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.interviewer-candidate-actions {
+  display: grid;
+  justify-items: stretch;
+  gap: 7px;
+}
+
+.interviewer-candidate-actions button,
+.interviewer-candidate-actions a {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 9px;
+  border: 1px solid #2a5349;
+  border-radius: 7px;
+  background: #173a32;
+  color: #8bf0d4;
+  font-size: 8px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.interviewer-candidate-actions a {
+  border-color: #2b4350;
+  background: #142637;
+  color: #9ed5e8;
+}
+
+.interviewer-candidate-actions > span {
+  color: #9aa8bb;
+  font-size: 8px;
+}
+
+.interviewer-loading {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #080e1a;
+  color: #a7b3c5;
+  font-size: 11px;
+}
+
+.interviewer-spinner {
+  width: 19px;
+  height: 19px;
+  border: 2px solid #24413d;
+  border-top-color: #67dfbd;
+  border-radius: 50%;
+  animation: interviewer-spin 700ms linear infinite;
+}
+
+@keyframes interviewer-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1100px) {
+  .interviewer-dashboard {
+    grid-template-columns: 204px minmax(0, 1fr);
+  }
+
+  .interviewer-dashboard-grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(235px, 0.8fr);
+  }
+
+  .interviewer-candidate-details {
+    grid-template-columns: auto minmax(140px, 1fr) minmax(160px, 1.1fr);
+  }
+
+  .interviewer-candidate-actions {
+    grid-column: 2 / -1;
+    grid-template-columns: repeat(2, max-content);
+  }
+}
+
+@media (max-width: 820px) {
+  .interviewer-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .interviewer-sidebar {
+    position: static;
+    height: auto;
+    padding: 12px 18px 10px;
+    border-right: 0;
+    border-bottom: 1px solid #253348;
+  }
+
+  .interviewer-brand {
+    align-self: flex-start;
+  }
+
+  .interviewer-identity,
+  .interviewer-sidebar-note,
+  .interviewer-logout {
+    display: none;
+  }
+
+  .interviewer-nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 5px;
+    margin-top: 10px;
+    padding-bottom: 2px;
+    scrollbar-width: thin;
+  }
+
+  .interviewer-nav button {
+    min-height: 34px;
+    flex: 0 0 auto;
+    padding: 0 9px;
+    font-size: 9px;
+  }
+
+  .interviewer-nav-count {
+    min-width: 16px;
+    height: 16px;
+  }
+
+  .interviewer-topbar {
+    min-height: 56px;
+  }
+
+  .interviewer-content {
+    width: min(100% - 36px, 720px);
+  }
+
+  .interviewer-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .interviewer-side-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .interviewer-candidate-details {
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .interviewer-topbar {
+    gap: 9px;
+    padding: 0 14px;
+  }
+
+  .interviewer-search {
+    width: auto;
+    min-width: 0;
+    flex: 1;
+    min-height: 34px;
+  }
+
+  .interviewer-search input {
+    min-width: 0;
+    font-size: 9px;
+  }
+
+  .interviewer-topbar-actions {
+    gap: 8px;
+  }
+
+  .interviewer-profile-button strong,
+  .interviewer-profile-button > span {
+    display: none;
+  }
+
+  .interviewer-header-logout {
+    min-height: 32px;
+    padding: 0 8px;
+    font-size: 0;
+  }
+
+  .interviewer-header-logout svg {
+    font-size: 12px;
+  }
+
+  .interviewer-content {
+    width: calc(100% - 26px);
+    padding-top: 15px;
+  }
+
+  .interviewer-welcome {
+    min-height: 150px;
+    padding: 20px 17px;
+  }
+
+  .interviewer-welcome h1 {
+    max-width: 270px;
+    font-size: 24px;
+  }
+
+  .interviewer-welcome p {
+    max-width: 255px;
+    font-size: 9px;
+  }
+
+  .interviewer-welcome-art {
+    right: -92px;
+    opacity: 0.45;
+  }
+
+  .interviewer-stats {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .interviewer-stat-card {
+    min-height: 62px;
+  }
+
+  .interviewer-dashboard-grid,
+  .interviewer-side-column {
+    grid-template-columns: 1fr;
+  }
+
+  .interviewer-panel {
+    padding: 13px;
+  }
+
+  .interviewer-panel-heading h2 {
+    font-size: 12px;
+  }
+
+  .interviewer-filter-tabs {
+    overflow-x: auto;
+  }
+
+  .interviewer-filter-tabs button {
+    flex: 0 0 auto;
+    padding: 0 8px;
+    font-size: 7px;
+  }
+
+  .interviewer-interview-row {
+    flex-wrap: wrap;
+  }
+
+  .interviewer-interview-select {
+    gap: 8px;
+  }
+
+  .interviewer-date-tile {
+    width: 38px;
+    height: 44px;
+  }
+
+  .interviewer-status {
+    padding: 4px 5px;
+    font-size: 6px;
+  }
+
+  .interviewer-join-link {
+    margin-left: 47px;
+  }
+
+  .interviewer-candidate-details {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .interviewer-candidate-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .interviewer-candidate-letter {
+    grid-column: 1 / -1;
+    padding: 10px 0 0;
+    border-top: 1px solid #29394c;
+    border-left: 0;
+  }
+
+  .interviewer-candidate-actions {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, max-content);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interviewer-spinner {
+    animation: none;
+  }
+}

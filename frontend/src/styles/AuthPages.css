@@ -1,0 +1,44 @@
+.auth-shell {
+  background:
+    radial-gradient(ellipse at 20% 20%, rgb(47 128 127 / 15%), transparent 30rem),
+    radial-gradient(ellipse at 88% 82%, rgb(57 104 164 / 14%), transparent 30rem),
+    #080e1a;
+}
+
+.auth-card {
+  border: 1px solid #29374a;
+  background: linear-gradient(145deg, rgb(18 28 44 / 98%), rgb(13 22 36 / 98%));
+  box-shadow:
+    0 28px 80px rgb(0 0 0 / 35%),
+    inset 0 1px rgb(255 255 255 / 4%);
+}
+
+.auth-card input,
+.auth-card select {
+  min-height: 48px;
+  border-color: #2b3a4e;
+  background-color: #0b1422;
+}
+
+.auth-card .register-role-select {
+  color: #e7edf7;
+  font-size: 13px;
+}
+
+.register-role-select option {
+  background: #0b1422;
+  color: #e7edf7;
+}
+
+.register-role-hint {
+  margin: 7px 0 0;
+  color: #8d9cb0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .auth-card {
+    padding: 1.4rem;
+  }
+}
