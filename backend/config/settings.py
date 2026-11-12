@@ -1,7 +1,7 @@
 
 """
 Django settings for RecruitPro project.
-Production deployment: Render + PostgreSQL + Vercel
+Production deployment: Render + PostgreSQL + Cloudflare Pages + R2
 """
 
 from pathlib import Path
@@ -40,18 +40,47 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in os.getenv(
         "DJANGO_ALLOWED_HOSTS",
-        "localhost,127.0.0.1",
+        "localhost,127.0.0.1,recruitpro-api.onrender.com",
     ).split(",")
     if host.strip()
 ]
 
-CSRF_TRUSTED_ORIGINS = [
+
+# --------------------------------------------------
+# CORS CONFIGURATION - CLOUDFLARE + LOCALHOST
+# --------------------------------------------------
+
+CORS_ALLOWED_ORIGINS = [
     origin.strip()
     for origin in os.getenv(
-        "DJANGO_CSRF_TRUSTED_ORIGINS", ""
+        "DJANGO_CORS_ALLOWED_ORIGINS",
+        "https://recruitpro-dashboard.samirdas4401.workers.dev,"
+        "http://localhost:5173,"
+        "http://127.0.0.1:5173",
     ).split(",")
     if origin.strip()
 ]
+
+print("CORS DEBUG:", repr(CORS_ALLOWED_ORIGINS))
+
+
+# --------------------------------------------------
+# CSRF CONFIGURATION
+# --------------------------------------------------
+
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv(
+        "DJANGO_CSRF_TRUSTED_ORIGINS",
+        "https://recruitpro-dashboard.samirdas4401.workers.dev",
+    ).split(",")
+    if origin.strip()
+]
+
+
+# --------------------------------------------------
+# HTTPS / RENDER PROXY SETTINGS
+# --------------------------------------------------
 
 SECURE_SSL_REDIRECT = os.getenv(
     "DJANGO_SECURE_SSL_REDIRECT",
@@ -66,7 +95,7 @@ SECURE_PROXY_SSL_HEADER = (
 SECURE_HSTS_SECONDS = int(
     os.getenv(
         "DJANGO_SECURE_HSTS_SECONDS",
-        "0" if DEBUG else "0",
+        "0",
     )
 )
 
@@ -89,6 +118,7 @@ CSRF_COOKIE_SECURE = not DEBUG
 # --------------------------------------------------
 
 INSTALLED_APPS = [
+    # Django apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -97,8 +127,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # Third-party apps
-    "rest_framework",
     "corsheaders",
+    "rest_framework",
 
     # RecruitPro apps
     "accounts",
@@ -114,9 +144,11 @@ INSTALLED_APPS = [
 # --------------------------------------------------
 
 MIDDLEWARE = [
+    # CORS middleware must be near the top
+    "corsheaders.middleware.CorsMiddleware",
+
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -340,20 +372,6 @@ STORAGES = {
 # --------------------------------------------------
 
 AUTH_USER_MODEL = "accounts.User"
-
-
-# --------------------------------------------------
-# CORS CONFIGURATION - VERCEL
-# --------------------------------------------------
-
-CORS_ALLOWED_ORIGINS = [
-    origin.strip()
-    for origin in os.getenv(
-        "DJANGO_CORS_ALLOWED_ORIGINS",
-        "http://localhost:5173,http://127.0.0.1:5173",
-    ).split(",")
-    if origin.strip()
-]
 
 
 # --------------------------------------------------
