@@ -411,6 +411,12 @@ CONTACT_EMAIL_BACKEND = os.getenv(
     "CONTACT_EMAIL_BACKEND",
     "django.core.mail.backends.smtp.EmailBackend",
 )
+RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
+
+RESEND_FROM_EMAIL = os.getenv(
+    "RESEND_FROM_EMAIL",
+    "onboarding@resend.dev",
+)
 
 SUPPORT_EMAIL = os.getenv(
     "SUPPORT_EMAIL",
