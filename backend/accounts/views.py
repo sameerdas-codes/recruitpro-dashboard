@@ -1,8 +1,6 @@
 
-import json
 import logging
-import urllib.error
-import urllib.request
+import requests
 
 from django.conf import settings
 from django.contrib.auth.password_validation import validate_password
@@ -30,12 +28,14 @@ from .serializers import (
 
 logger = logging.getLogger(__name__)
 
+
 class ContactEmailUnavailable(APIException):
     status_code = status.HTTP_503_SERVICE_UNAVAILABLE
     default_detail = (
         "Email delivery is temporarily unavailable. Please try again later."
     )
     default_code = "contact_email_unavailable"
+
 
 class ContactSupportView(APIView):
     authentication_classes = []
@@ -71,21 +71,28 @@ class ContactSupportView(APIView):
             "reply_to": data["email"],
         }
 
-        req = urllib.request.Request(
-            "https://api.resend.com/emails",
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-            },
-            method="POST",
-        )
-
         try:
-            with urllib.request.urlopen(req, timeout=15) as response:
-                result = json.loads(
-                    response.read().decode("utf-8")
+            response = requests.post(
+                "https://api.resend.com/emails",
+                json=payload,
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "User-Agent": "RecruitPro/1.0",
+                },
+                timeout=(5, 15),
+            )
+
+            if not response.ok:
+                logger.error(
+                    "Resend API error: HTTP %s - %s",
+                    response.status_code,
+                    response.text,
                 )
+                raise ContactEmailUnavailable()
+
+            result = response.json()
 
             if not result.get("id"):
                 logger.error("Resend did not return an email ID.")
@@ -96,20 +103,12 @@ class ContactSupportView(APIView):
                 result["id"],
             )
 
-        except urllib.error.HTTPError as error:
-            error_body = error.read().decode(
-                "utf-8",
-                errors="replace",
-            )
-            logger.error(
-                "Resend API error: HTTP %s - %s",
-                error.code,
-                error_body,
-            )
+        except requests.RequestException as error:
+            logger.exception("Could not connect to Resend API.")
             raise ContactEmailUnavailable() from error
 
-        except (urllib.error.URLError, TimeoutError, OSError) as error:
-            logger.exception("Could not connect to Resend API.")
+        except ValueError as error:
+            logger.exception("Resend returned an invalid JSON response.")
             raise ContactEmailUnavailable() from error
 
         return Response(
@@ -117,10 +116,12 @@ class ContactSupportView(APIView):
             status=status.HTTP_200_OK,
         )
 
+
 class InterviewerSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "username", "first_name", "last_name"]
+
 
 class InterviewerListView(generics.ListAPIView):
     serializer_class = InterviewerSerializer
@@ -134,6 +135,7 @@ class InterviewerListView(generics.ListAPIView):
             role="interviewer",
             is_active=True,
         ).order_by("username")
+
 
 class RegisterView(APIView):
 
@@ -160,6 +162,7 @@ class RegisterView(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST,
         )
+
 
 class CurrentUserView(APIView):
 
@@ -190,6 +193,7 @@ class CurrentUserView(APIView):
             ).data,
             status=status.HTTP_200_OK,
         )
+
 
 class PasswordResetRequestView(APIView):
     permission_classes = [AllowAny]
@@ -235,6 +239,7 @@ class PasswordResetRequestView(APIView):
             },
             status=status.HTTP_200_OK,
         )
+
 
 class PasswordResetConfirmView(APIView):
     permission_classes = [AllowAny]
